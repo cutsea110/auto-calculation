@@ -18,7 +18,7 @@ prove strings string = let laws = map (parse law) strings
                            (e1, e2) = parse equation string
                        in paste (calculate laws e1) (calculate laws e2)
 
-
+{--
 -- TFWH p305 12.8 運算器のテスト
 
 test :: Calculation
@@ -138,3 +138,4 @@ testX = simplify customLaws "cup . (one * (cup . (matchA * (cmap unifyAll . cp .
                  , "assocl則: assocl . (f * (g * h)) = ((f * g) * h) . assocl"
                  , "(*)の双ファンクタ則-逆:  (f . h) * (g . k) = (f * g) . (h * k)" -- ここ
                  ] 
+--}
