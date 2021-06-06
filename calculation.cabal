@@ -27,6 +27,7 @@ library
                      , Simplify
                      , Substitutions
                      , Utilities
+                     , Test
                      
   other-extensions:
   build-depends:     base >=4.13 && <4.14
