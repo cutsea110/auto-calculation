@@ -28,6 +28,7 @@ library
                      , Substitutions
                      , Utilities
                      , Test
+                     , Aop01
                      
   other-extensions:
   build-depends:     base >=4.13 && <4.14
