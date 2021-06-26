@@ -1,4 +1,5 @@
-module Rewrites (rewrites) where
+module Rewrites
+  ( rewrites ) where
 
 import Expressions
 import Laws (Equation)
