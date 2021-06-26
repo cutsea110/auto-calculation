@@ -33,10 +33,13 @@ sortLaws laws = simple ++ others ++ defns
     (simple, nonsimple) = partition isSimple laws
     (defns, others) = partition isDefn nonsimple
 
+isSimple :: Law -> Bool
 isSimple (Law _ (Compose as1, Compose as2)) = length as1 > length as2
 
+isDefn :: Law -> Bool
 isDefn (Law _ (Compose [Con f es], _)) = all isVar es
 isDefn _ = False
 
+isVar :: Expr -> Bool
 isVar (Compose [Var _]) = True
 isVar _ = False

@@ -29,7 +29,10 @@ operator = do { op <- token (some (sat symbolic))
               ; return op
               }
 
+symbolic :: Char -> Bool
 symbolic = (`elem` opsymbols)
+
+opsymbols :: String
 opsymbols = "!@#$%*&+./<=>?\\^|:-~"
 
 simple :: Parser Expr
@@ -56,6 +59,7 @@ ident args = do { x <- token (some (sat isAlphaNum))
                                }
                 }
 
+isVar :: String -> Bool
 isVar [x] = True
 isVar [x, d] = isDigit d
 isVar _ = False
@@ -68,6 +72,7 @@ instance Show Expr where
 showSep :: String -> (a -> ShowS) -> [a] -> ShowS
 showSep sep f = compose . intersperse (showString sep) . map f
 
+showSpace :: ShowS
 showSpace = showChar ' '
 
 instance Show Atom where
@@ -77,4 +82,5 @@ instance Show Atom where
     | isOp f = showParen (p > 0) (showsPrec 1 e1 . showSpace . showString f . showSpace . showsPrec 1 e2)
   showsPrec p (Con f es) = showParen (p > 1) (showString f . showSpace . showSep " " (showsPrec 2) es)
 
+isOp :: String -> Bool
 isOp f = all symbolic f

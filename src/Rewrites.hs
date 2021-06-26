@@ -11,6 +11,7 @@ rewrites :: Equation -> Expr -> [Expr]
 rewrites eqn (Compose as)
   = map Compose (rewritesSeg eqn as ++ anyOne (rewritesA eqn) as)
 
+rewritesA :: Equation -> Atom -> [Atom]
 rewritesA eqn (Var v) = []
 rewritesA eqn (Con k es)
   = map (Con k) (anyOne (rewrites eqn) es)
