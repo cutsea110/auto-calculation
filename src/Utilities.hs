@@ -12,11 +12,20 @@ everyOne f = cp . map (possibly f)
   where
     possibly f x = if null xs then [x] else xs where xs = f x
 
+{--
 segments :: [a] -> [([a], [a], [a])]
-segments as = [(as1, as2, as3)
-              | (as1, bs) <- splits as
+segments as = [ (as1, as2, as3)
+              | (as1, bs)  <- splits as
               , (as2, as3) <- splits bs
               ]
+--}
+
+segments :: [a] -> [([a], [a], [a])]
+segments xs = [([], [], xs)]
+              ++ [ (as, bs, cs)
+                 | (as, ys) <- splits xs
+                 , (bs, cs) <- tail (splits ys)
+                 ]
 
 splits :: [a] -> [([a], [a])]
 splits [] = [([], [])]
