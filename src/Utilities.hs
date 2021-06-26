@@ -7,6 +7,11 @@ anyOne :: (a -> [a]) -> [a] -> [[a]]
 anyOne f [] = []
 anyOne f (x:xs) = [x':xs | x' <- f x] ++ [x:xs' | xs' <- anyOne f xs]
 
+everyOne :: (a -> [a]) -> [a] -> [[a]]
+everyOne f = cp . map (possibly f)
+  where
+    possibly f x = if null xs then [x] else xs where xs = f x
+
 segments :: [a] -> [([a], [a], [a])]
 segments as = [(as1, as2, as3)
               | (as1, bs) <- splits as
