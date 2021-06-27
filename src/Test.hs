@@ -123,3 +123,11 @@ testX = simplify customLaws "cup . (one * (cup . (matchA * (cmap unifyAll . cp .
                  , "assocl則: assocl . (f * (g * h)) = ((f * g) * h) . assocl"
                  , "(*)の双ファンクタ則-逆:  (f . h) * (g . k) = (f * g) . (h * k)" -- ここ
                  ] 
+
+testK = prove customLaws "cmap f . cmap g = cmap (cmap f . g)"
+  where
+    customLaws = [ "cmap の定義: cmap f = concat . map f"
+                 , "map のファンクタ則: map f . map g = map (f . g)"
+                 , "map-concat 則: map f . concat = concat . map (map f)"
+                 , "concat-concat 則: concat . concat = concat . map concat"
+                 ]
