@@ -26,7 +26,7 @@ xmatchesA sub (ae:aes)
 xmatchA :: [(VarName, Expr)] -> (Atom, Expr) -> [[(VarName, Expr)]]
 xmatchA sub (Var v, e) = extend sub v e
 xmatchA sub (Con k1 es1, Compose [Con k2 es2])
-  | k1 == k2 = xmatches sub (zip es1 es2)
+  | k1 == k2 && length es1 == length es2 = xmatches sub (zip es1 es2)
 xmatchA _ _ = []
 
 xmatches :: [(VarName, Expr)] -> [(Expr, Expr)] -> [[(VarName, Expr)]]
