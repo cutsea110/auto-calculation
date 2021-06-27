@@ -23,7 +23,7 @@ apply :: Parser a -> String -> [(a, String)]
 apply (Parser p) = p
 
 parse :: Parser a -> String -> a
-parse p = fst . head . apply p
+parse p = fst . head . apply p -- TODO: head は危険(練習問題 D)
 
 instance Functor Parser where
   fmap f (Parser p)  = Parser (\s -> [(f x, s') | (x, s') <- p s])
@@ -144,7 +144,7 @@ paren p = do { symbol "("
 upto :: Char -> Parser String
 upto c = Parser (\s -> let (xs, ys) = break (== c) s
                        in if null ys then []
-                          else [(xs, tail ys)])
+                          else [(xs, tail ys)]) -- TODO: tail は危険(練習問題 D)
 
 -----
 {--
