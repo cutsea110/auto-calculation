@@ -20,6 +20,6 @@ rewritesA eqn (Con k es)
 rewritesSeg :: Equation -> [Atom] -> [[Atom]]
 rewritesSeg (e1, e2) as
   = [ as1 ++ deCompose (apply sub e2) ++ as3
-    | (as1, as2, as3) <- segments as
+    | (as1, as2, as3) <- reverse $ segments as
     , sub <- match (e1, Compose as2)
     ]
