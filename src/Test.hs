@@ -131,3 +131,13 @@ testK = prove customLaws "cmap f . cmap g = cmap (cmap f . g)"
                  , "map-concat 則: map f . concat = concat . map (map f)"
                  , "concat-concat 則: concat . concat = concat . map concat"
                  ]
+
+testL = prove customLaws "cmap (cpp . (one * f)) . cpp = cpp . (id * cmap f)"
+  where
+    customLaws = [ "cmap-map 則: cmap f . map g = cmap (f . g)"
+                 , "cmap-cpp 則: cmap cpp . cpp = cpp . (concat * concat)"
+                 , "(*) の双ファンクタ則: (f * g) . (h * k) = (f . h) * (g . k)"
+                 , "map-cpp 則: map (f * g) . cpp = cpp . (map f * map g)"
+                 , "cmap の定義: cmap f = concat . map f"
+                 , "concat-id 則: concat . map one = id"
+                 ]
