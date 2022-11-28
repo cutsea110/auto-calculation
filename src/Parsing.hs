@@ -35,7 +35,7 @@ instance Applicative Parser where
                                         , (x', s'') <- x s'])
 
 instance Monad Parser where
-  return x = Parser (\s -> [(x, s)])
+  return = pure
   p >>= q = Parser (\s -> [ (y, s'')
                           | (x, s') <- apply p s
                           , (y, s'') <- apply (q x) s'])
